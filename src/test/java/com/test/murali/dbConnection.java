@@ -7,7 +7,7 @@ import static java.lang.Class.forName;
 
 public class dbConnection {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        //class.forName("Oracle.jdbc.driver.OracleDriver");
+        Class.forName("Oracle.jdbc.driver.OracleDriver");
         Connection con= DriverManager.getConnection("jdbc:oracle:thin:@<hostName>:<portNumber>:<DBName>","userid","pasword" );
         String Query="Select * from emp";
         Statement st=con.createStatement();
