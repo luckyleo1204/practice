@@ -119,12 +119,12 @@ public class GetStatusCodeTest {
         map.put("customerName",getRandomName());
         //JSONObject jsonObject = JSONObject.toJSONString(map);
 
-        RequestSpecification r2 = RestAssured.given()
+        RequestSpecification r3 = RestAssured.given()
                 .header("Accept", "*/*")
                 .header("Content-Type", "application/json")
                 .header("Connection", "keep-alive")
                 .header("Authorization",getAuth());
-        //r2.body(jsonObject).post("/orders").then().log().all();
+        r3.body(jsonObject).post("/orders").then().log().all();
 
     }
 
