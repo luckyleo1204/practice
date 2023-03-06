@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="/Users/muralic/Personal/SeleniumPract/src/test/java/com/test/murali/crosBrowser.java">
+        <classes>
+            <class name="com.test.murali.crosBrowser">
+                <methods>
+                        <include name="TestFireFox"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="/Users/muralic/Personal/SeleniumPract/src/test/java/com/test/murali/FirstSelenium.java">
+      <classes>
+          <class name="com.test.murali.FirstSelenium">
+              <methods>
+                  <include name="tetSelenium"/>
+                  <include name="scrolldownDemo"/>
+                  <include name="scrolltoViewDemo"/>
+                  <include name="captureScreenShotOnFailure"/>
+              </methods>
+          </class>
+      </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="/Users/muralic/Personal/SeleniumPract/src/test/java/com/test/murali/practice.java">
+    <classes>
+        <class name="com.test.murali.practice">
+            <methods><include name="test1"/>
+                <include name="test2"/>
+                <include name="test3"/>
+                <include name="test4"/>
+                <include name="test6"/>
+                <include name="test5"/>
+                <include name="sortBySteamInteger"/>
+                <include name="SortObject"/>
+                <include name="sortByStreamString"/>
+                <include name="removeDuplicate"/>
+            </methods>
+        </class>
+    </classes>
+</test>
+</suite>

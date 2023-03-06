@@ -7,10 +7,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class practice {
    static WebDriver driver;
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void test1() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver","/Users/muralic/Desktop/selenium/driver/chromedriver");
         driver=new ChromeDriver();
@@ -22,7 +23,7 @@ public class practice {
         driver.quit();
     }
 
-    @Test(enabled=false)
+    @Test(enabled=true)
     public void test2() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver","/Users/muralic/Desktop/selenium/driver/chromedriver");
         driver=new ChromeDriver();
@@ -49,6 +50,14 @@ public class practice {
             System.out.println(webElement.getText());
         }
         driver.close();
+    }
+
+    @Test(enabled = true)
+    public void test7(){
+        System.setProperty("webdriver.chrome.driver","/Users/muralic/Desktop/selenium/driver/chromedriver");
+        driver=new ChromeDriver();
+        driver.get("https://demo.guru99.com/test/guru99home/");
+        printAlltheFollowing("Selenium");
     }
 
     @Test
@@ -99,7 +108,7 @@ public class practice {
 
         }
 
-    @Test
+    @Test(enabled = false)
     public void test5(){
         Student s1 = new Student("Ram", "1", "Tennis");
         Student s2 = new Student("John", "3", "Caroms");
@@ -121,6 +130,133 @@ public class practice {
         }
         System.out.println(hm);
 
+    }
+
+
+    @Test
+    public void sortBySteamInteger(){
+        List<Integer> al=Arrays.asList(11,2,5,6,9,1);
+        List<Integer> al2=al.stream()
+                .sorted()
+                .collect(Collectors.toList());
+        al2.forEach(n-> System.out.print(n+"\t"));
+    }
+
+    @Test
+    public void SortObject(){
+        List<Player> players=Arrays.asList(
+                new Player(10,"Murali",200.25,1),
+                new Player(2,"Harshi",999.99,23),
+                new Player(33,"Kushi",200.25,7),
+                new Player(9,"Zen",99.99,9)
+        );
+
+       List<Player> sortByID= players.stream().sorted((p1,p2) -> p1.getId()-p2.getId()).collect(Collectors.toList());
+
+        sortByID.forEach(n-> System.out.println(n+"\t"));
+
+        System.out.println("=================================\n");
+        List<Player> sortByName=players.stream().sorted((p1,p2) ->p1.getName().compareTo(p2.getName()))
+                .collect(Collectors.toList());
+        sortByName.forEach(n-> System.out.println(n+"\t"));
+
+        System.out.println("=================================\n");
+        List<Player> sortByRank=players.stream().sorted((p1,p2)->Integer.compare(p1.getRank(),p2.getRank()))
+                .collect(Collectors.toList());
+        sortByRank.forEach(n-> System.out.println(n+"\t"));
+
+        System.out.println("===============ReverseList============");
+        List<Player> sortByIDRev= players.stream().sorted((p1,p2) -> p2.getId()-p1.getId()).collect(Collectors.toList());
+
+        sortByIDRev.forEach(n-> System.out.println(n+"\t"));
+        System.out.println("=================================\n");
+        List<Player> sortByNameRev=players.stream().sorted((p1,p2) ->p2.getName().compareTo(p1.getName()))
+                .collect(Collectors.toList());
+        sortByNameRev.forEach(n-> System.out.println(n+"\t"));
+
+        System.out.println("=================================\n");
+        List<Player> sortByRankRev=players.stream().sorted((p1,p2)->Integer.compare(p2.getRank(),p1.getRank()))
+                .collect(Collectors.toList());
+        sortByRankRev.forEach(n-> System.out.println(n+"\t"));
+    }
+
+    @Test
+    public void sortByStreamString(){
+        List<String> al=Arrays.asList("Murali","Kavitha","Harshith","Zen","Apple");
+       List<String> al2= al.stream().sorted().collect(Collectors.toList());
+       al2.forEach(n-> System.out.print(n+"\t"));
+    }
+
+    @Test
+    public void removeDuplicate() {
+        List<String> al = Arrays.asList("Murali", "Kavitha", "Apple", "Harshith", "Zen", "Apple", "Kavitha", "Murali");
+        List<String> al2 = al.stream().distinct().collect(Collectors.toList());
+        al2.forEach(n -> System.out.print(n + "\t"));
+        System.out.println("\n============================\n");
+        Set<String> al3 = al.stream().distinct().collect(Collectors.toSet());
+        al3.forEach(n -> System.out.print(n + "\t"));
+        System.out.println("\n===========Print in Reverse Order===============\n");
+        List<String> al4 = al.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        al4.forEach(n -> System.out.print(n + "\t"));
+    }
+
+
+    class Player {
+
+        // private member variables
+        private int id;
+        private String name;
+        private double average;
+        private int rank;
+
+        public Player(int id, String name, double average, int rank) {
+            this.id = id;
+            this.name = name;
+            this.average = average;
+            this.rank = rank;
+        }
+
+        @Override
+        public String toString() {
+            return "Player{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", average=" + average +
+                    ", rank=" + rank +
+                    '}';
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public double getAverage() {
+            return average;
+        }
+
+        public void setAverage(double average) {
+            this.average = average;
+        }
+
+        public int getRank() {
+            return rank;
+        }
+
+        public void setRank(int rank) {
+            this.rank = rank;
+        }
     }
 
     class Student {
@@ -182,8 +318,7 @@ public class practice {
                 map.put(al.get(i).findElement(By.xpath("//*[@id=\"leftcontainer\"]/table/tbody/tr["+i+"]/td[1]")).getText(),x);
             }
         }
-        Set<String> set1=map.keySet();
-        for(String k : set1){
+        for(String k : map.keySet()){
             System.out.println("Key  :"+ k+"\tValue  :"+map.get(k));
         }
     }
@@ -193,6 +328,11 @@ public class practice {
         for(WebElement i: al){
             System.out.println(i.getText());
         }
+    }
+
+    public static void printAlltheFollowing(String Name){
+        List<WebElement> al=driver.findElements(By.xpath("//h2[contains(text(),'A few of our most popular courses')]/parent::div//div[//a[text()='SELENIUM']]/following-sibling::div[@class='rt-grid-2 rt-omega']"));
+        al.forEach(a->System.out.print(a.getText()+"\t"));
     }
     public static String mcompare(String a, String b){
         String flag="No";

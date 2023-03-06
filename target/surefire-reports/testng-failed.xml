@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [All Test Suite]" guice-stage="DEVELOPMENT" verbose="0">
+  <test thread-count="5" name="/Users/muralic/Personal/SeleniumPract/src/test/java/com/test/murali/crosBrowser.java(failed)" verbose="0">
+    <classes>
+      <class name="com.test.murali.crosBrowser">
+        <methods>
+          <include name="TestFireFox"/>
+        </methods>
+      </class> <!-- com.test.murali.crosBrowser -->
+    </classes>
+  </test> <!-- /Users/muralic/Personal/SeleniumPract/src/test/java/com/test/murali/crosBrowser.java(failed) -->
+  <test thread-count="5" name="/Users/muralic/Personal/SeleniumPract/src/test/java/com/test/murali/FirstSelenium.java(failed)" verbose="0">
+    <classes>
+      <class name="com.test.murali.FirstSelenium">
+        <methods>
+          <include name="init"/>
+          <include name="captureScreenShotOnFailure"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- com.test.murali.FirstSelenium -->
+    </classes>
+  </test> <!-- /Users/muralic/Personal/SeleniumPract/src/test/java/com/test/murali/FirstSelenium.java(failed) -->
+</suite> <!-- Failed suite [All Test Suite] -->
