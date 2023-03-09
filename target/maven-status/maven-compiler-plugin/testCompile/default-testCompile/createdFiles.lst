@@ -3,6 +3,7 @@ com/test/murali/removeDuplicate.class
 com/test/murali/crosBrowser.class
 com/test/murali/convertDecimalRomanNumber.class
 com/test/murali/convertListToSet.class
+com/test/murali/apiAutomation.class
 com/test/murali/constructorChaining.class
 com/test/murali/student.class
 com/test/murali/dbConnection.class
@@ -22,7 +23,6 @@ com/test/murali/findSecondMax.class
 com/test/murali/MaxWordinFile.class
 com/test/murali/practice.class
 com/test/murali/findDuplicate.class
-com/test/murali/GetStatusCodeTest.class
 com/test/murali/bubbleSort.class
 com/test/murali/j.class
 com/test/murali/aaabbccddaab.class

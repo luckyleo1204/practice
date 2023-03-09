@@ -1,14 +1,14 @@
 package com.test.murali;
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.Reader;
@@ -19,23 +19,13 @@ import java.util.UUID;
 
 import static io.restassured.RestAssured.given;
 
-public class GetStatusCodeTest {
+public class apiAutomation {
 
     public static String token="";
     @BeforeClass
     public void setBaseUrl() {
         String uname= UUID.randomUUID().toString();
         RestAssured.baseURI = "https://simple-books-api.glitch.me/";
-//        String input="{\n" +
-//                "   \"clientName\": \"Postman121\",\n" +
-//                "   \"clientEmail\": \""+ uname +"\"@gmail.com\"\n" +
-//                "}";
-//        RequestSpecification r = RestAssured.given()
-//                .header("Accept", "*/*")
-//                .header("Content-Type", "application/json")
-//                .header("Connection", "keep-alive");
-//        Response  response= r.body(input).post("api-clients");
-//           token=response.getBody().jsonPath().get("accessToken");
     }
 
     @Test
@@ -48,7 +38,6 @@ public class GetStatusCodeTest {
         given()
                 .get("Books?type=fiction&limit=3")
                 .then().log().all();
-
     }
 
     @Test
@@ -125,6 +114,20 @@ public class GetStatusCodeTest {
                 .header("Connection", "keep-alive")
                 .header("Authorization",getAuth());
         r3.body(jsonObject).post("/orders").then().log().all();
+
+    }
+
+    @Test
+    public void test1(){
+         orders or1=new orders();
+         or1.setBookId(1);
+         or1.setCustomerName("MuraliTest");
+        RequestSpecification r3 = RestAssured.given()
+                .header("Accept", "*/*")
+                .header("Content-Type", "application/json")
+                .header("Connection", "keep-alive")
+                .header("Authorization",getAuth());
+        r3.body(or1).post("/orders").then().log().all();
 
     }
 
