@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class javaPractice {
+public class stringPract {
     public static void main(String[] args) {
         String s="Hello Murali and Kushi";
 

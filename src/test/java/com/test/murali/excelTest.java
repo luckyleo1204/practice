@@ -1,8 +1,11 @@
 package com.test.murali;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import lombok.SneakyThrows;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.*;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,12 +18,26 @@ import java.util.Map;
 
 public class excelTest {
 
-    public static void main(String[] args) throws IOException {
+    @Test
+    public void test() throws Exception
+     {
         Map<String, String> excelData = new HashMap<String, String>();
         excelData=readWriteExcel("Login","hello");
         System.out.println(excelData.get("Name"));
         System.out.println(excelData.get("Age"));
         System.out.println(excelData.get("DOB"));
+    }
+
+    @Test(dataProvider = "TestData")
+    public void dataProvider(String val){
+        System.out.println("Passed parameter is "+ val);
+
+    }
+
+    @DataProvider(name="TestData")
+    public Object[][] testDataProvideer(){
+
+        return new Object[][] {{"First-Value"}, {"Second-Value"}};
     }
 
     public static Map<String, String> readWriteExcel(String sheetName,String TestName) throws EncryptedDocumentException, InvalidFormatException, IOException, IOException {
