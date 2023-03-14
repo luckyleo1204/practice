@@ -1,4 +1,4 @@
-package com.test.murali;
+package com.test.apiTesting;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -7,11 +7,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;

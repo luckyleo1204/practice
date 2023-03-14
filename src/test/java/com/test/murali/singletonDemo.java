@@ -20,7 +20,9 @@ class singleton{
 
     public static singleton getInstance(){
         if(obj==null ) {
-            synchronized (singleton.class) {
+            synchronized (singleton.class) { //Here using synchronized makes sure that only one thread
+                // check again as multiple threads
+                // can reach above step
                 if (obj == null)
                     return new singleton();
             }

@@ -1,4 +1,4 @@
-package com.test.murali;
+package com.test.apiTesting;
 
 import lombok.Data;
 
