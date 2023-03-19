@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 
@@ -35,11 +36,13 @@ public class seleniumTests {
    @Test
    public void flipkart() throws InterruptedException {
        driver.get("https://www.flipkart.com/");
-       driver.findElement(By.name("q")).sendKeys("Apple phone");
+       driver.findElement(By.name("q")).sendKeys("mobiles");
        driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
        Thread.sleep(5000);
        driver.findElement(By.xpath("//button[text()='✕']")).click();
-       List<WebElement> al=driver.findElements(By.xpath("//div[text()='₹65,999']/ancestor::div[@class=\"_1AtVbE col-12-12\"]/div/div/div/a/div[2]/div[@class=\"col col-7-12\"]/div[@class=\"_4rR01T\"]"));
+       //List<WebElement> al=driver.findElements(By.xpath("//div[text()='₹65,999']/ancestor::div[@class=\"_1AtVbE col-12-12\"]/div/div/div/a/div[2]/div[@class=\"col col-7-12\"]/div[@class=\"_4rR01T\"]"));
+      // List<WebElement> al=driver.findElements(By.xpath("//div[text()='₹65,999']/ancestor::a[@target=\"_blank\"]/div[2]/div/div[@class=\"_4rR01T\"]"));
+       List<WebElement> al=driver.findElements(By.xpath("//div[text()='₹72,999' < 50000]/parent::a[@class='_1fQZEK']/div[2]/div/div[@class='_4rR01T']"));
        for(WebElement i : al)
            System.out.println(i.getText());
    }
@@ -124,7 +127,7 @@ public class seleniumTests {
        elements.forEach(n-> System.out.print(n.getText()+"\t"));
     }
 
-    @Test(enabled = false)
+    @Test(alwaysRun = true)
     public void googleSearch1(){
         driver.get("https://www.google.com/");
         driver.manage().window().maximize();
@@ -135,7 +138,26 @@ public class seleniumTests {
         }
     }
 
-    @Test(enabled = true)
+    @Test(enabled=true)
+    public void rediffTest(){
+       driver.get("https://money.rediff.com/gainers");
+       driver.manage().window().maximize();
+       List<WebElement> al=driver.findElements(By.xpath("//table/tbody/tr/td[2][text()='XT']/preceding-sibling::td"));
+        System.out.println(al.size());
+       al.forEach(n-> System.out.println(n.getText()));
+    }
+
+    @Test(enabled=true)
+    public void crickSixGreaterThanzero(){
+        driver.get("https://www.espncricinfo.com/series/australia-in-india-2022-23-1348637/india-vs-australia-1st-odi-1348656/live-cricket-score");
+        driver.manage().window().maximize();
+        List<WebElement> al=driver.findElements(By.xpath("//table/tbody[@class=\"ds-text-right\"]/tr/td[5][text()>0]/preceding-sibling::td/a/span"));
+        System.out.println(al.size());
+        al.forEach(n-> System.out.println(n.getText()));
+
+    }
+
+    @Test(enabled = false)
     public void clickElementJS()  {
         driver.get("https://www.browserstack.com/users/sign_in");
         driver.manage().window().maximize();
@@ -149,6 +171,36 @@ public class seleniumTests {
        // js.executeScript(“document.getElementByID(‘element id ’).checked=false;”);
         //JavascriptExecutor in Selenium to refresh the browser window
        // js.executeScript(“location.reload()”);
+    }
+
+    @Test
+    public void testxpath(){
+       driver.get("https://www.flipkart.com");
+       driver.manage().window().maximize();
+       driver.findElement(By.xpath("//input[@name=\"q\"]")).sendKeys("mobiles");
+       driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+       List<WebElement> al= driver.findElements(By.xpath("//div[text()='₹65,999']/parent::div/parent::div/parent::div/parent::div/div/div[starts-with(text(),'APPLE')]"));
+        al.forEach(n-> System.out.println(n.getText()));
+
+
+    }
+
+    @Test(enabled = false)
+    public void getHelperText(){
+
+        driver.get("https://www.flipkart.com");
+        driver.manage().window().maximize();
+        WebElement flogo=driver.findElement(By.xpath("//*[@id=\"container\"]/div/div[1]/div[1]/div[2]/div[1]/div/a[1]/img"));
+        System.out.println(flogo.getAttribute("title"));
+    }
+
+    @Test
+    public void uploadFile(){
+       driver.get("https://www.tutorialspoint.com/selenium/selenium_automation_practice.htm");
+       driver.manage().window().maximize();;
+      // driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+       driver.findElement(By.xpath("//input[@name=\"photo\"]")).sendKeys("/Users/muralic/Personal/Resume/MuraliC_14yrs.docx");
+       //driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
     }
 
     @AfterMethod

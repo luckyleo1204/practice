@@ -1,7 +1,6 @@
 package com.test.murali;
 
 import java.util.*;
-
 public class demo {
     public static void main(String[] args) {
         ArrayList<Integer> al=new ArrayList<>(Arrays.asList(1,33,2,1,5,6,8,2,1,99));

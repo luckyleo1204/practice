@@ -3,6 +3,7 @@ package com.test.murali.pagefactoryDemo.Tests;
 import com.test.murali.pagefactoryDemo.pages.dashboard;
 import com.test.murali.pagefactoryDemo.pages.homePage;
 import com.test.murali.pagefactoryDemo.pages.loginPage;
+import com.test.murali.pagefactoryDemo.utility.rerunfailedTests;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
@@ -54,7 +55,7 @@ public class homePageTest {
 
     }
 
-    @Test
+    @Test(retryAnalyzer = rerunfailedTests.class)
     public void homePageTest() {
         homePage home = new homePage(driver);
        loginPage lp=home.startTest();
