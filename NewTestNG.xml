@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="/Users/muralic/Personal/SeleniumPract/src/test/java/com/test/murali/seleniumTests.java">
-    <classes><class name="com.test.murali.seleniumTests">
+    <classes><class name="com.test.javapractice.seleniumTests">
         <methods>
         <include name="SeleniumPract"/><include name="guru99"/>
         <include name="guru99Following"/>
