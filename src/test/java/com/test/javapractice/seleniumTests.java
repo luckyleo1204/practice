@@ -3,7 +3,10 @@ package com.test.javapractice;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,6 +15,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -24,25 +28,40 @@ public class seleniumTests {
    
    @BeforeMethod
    public void init(){
-       System.setProperty("webdriver.chrome.driver","/Users/muralic/Desktop/selenium/driver/chromedriver");
-       ChromeOptions opts=new ChromeOptions();
-       opts.addArguments("--remote-allow-origins=*");
-       driver=new ChromeDriver(opts);
+//       System.setProperty("webdriver.chrome.driver","/Users/muralic/Desktop/selenium/driver/chromedriver");
+//       ChromeOptions opts=new ChromeOptions();
+//       opts.addArguments("--remote-allow-origins=*");
+       driver=new ChromeDriver();
+
+   }
+
+
+   @Test
+   public void testDemo(){
+       driver.get("https://www.flipkart.com/");
+       String title=driver.getTitle();
+       System.out.println(title);
 
    }
 
    @Test
    public void flipkart() throws InterruptedException {
        driver.get("https://www.flipkart.com/");
-       driver.findElement(By.name("q")).sendKeys("mobiles");
-       driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
-       Thread.sleep(5000);
-       driver.findElement(By.xpath("//button[text()='✕']")).click();
-       //List<WebElement> al=driver.findElements(By.xpath("//div[text()='₹65,999']/ancestor::div[@class=\"_1AtVbE col-12-12\"]/div/div/div/a/div[2]/div[@class=\"col col-7-12\"]/div[@class=\"_4rR01T\"]"));
-      // List<WebElement> al=driver.findElements(By.xpath("//div[text()='₹65,999']/ancestor::a[@target=\"_blank\"]/div[2]/div/div[@class=\"_4rR01T\"]"));
-       List<WebElement> al=driver.findElements(By.xpath("//div[text()='₹72,999' < 50000]/parent::a[@class='_1fQZEK']/div[2]/div/div[@class='_4rR01T']"));
-       for(WebElement i : al)
-           System.out.println(i.getText());
+       String title=driver.getTitle();
+       System.out.println(title);
+
+
+
+       //driver.findElement(By.name("q")).sendKeys("mobiles");
+
+//       driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+//       Thread.sleep(5000);
+//       driver.findElement(By.xpath("//button[text()='✕']")).click();
+//       //List<WebElement> al=driver.findElements(By.xpath("//div[text()='₹65,999']/ancestor::div[@class=\"_1AtVbE col-12-12\"]/div/div/div/a/div[2]/div[@class=\"col col-7-12\"]/div[@class=\"_4rR01T\"]"));
+//      // List<WebElement> al=driver.findElements(By.xpath("//div[text()='₹65,999']/ancestor::a[@target=\"_blank\"]/div[2]/div/div[@class=\"_4rR01T\"]"));
+//       List<WebElement> al=driver.findElements(By.xpath("//div[text()='₹72,999' < 50000]/parent::a[@class='_1fQZEK']/div[2]/div/div[@class='_4rR01T']"));
+//       for(WebElement i : al)
+//           System.out.println(i.getText());
    }
 
    @Test
@@ -87,7 +106,7 @@ public class seleniumTests {
 
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void guru99(){
         driver.get("https://www.guru99.com");
         driver.manage().window().maximize();
@@ -173,11 +192,20 @@ public class seleniumTests {
 
     @Test
     public void testxpath(){
-       driver.get("https://www.flipkart.com");
-       driver.manage().window().maximize();
-       driver.findElement(By.xpath("//input[@name=\"q\"]")).sendKeys("mobiles");
+       //driver.get("https://www.flipkart.com/search?q=iphone&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off");
+        driver.get("https://www.flipkart.com");
+        driver.manage().window().maximize();
+        WebDriverWait wait=new WebDriverWait(driver, Duration.ofMillis(5000));
        driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
-       List<WebElement> al= driver.findElements(By.xpath("//div[text()='₹65,999']/parent::div/parent::div/parent::div/parent::div/div/div[starts-with(text(),'APPLE')]"));
+       WebElement crossMark=driver.findElement(By.xpath("//div/span[text()=\"✕\"]"));
+       wait.until(ExpectedConditions.visibilityOf(crossMark));
+        crossMark.click();
+        WebElement searchBox= driver.findElement(By.xpath("//input[@name=\"q\"]"));
+        searchBox.sendKeys("iphone");
+        wait.until(ExpectedConditions.visibilityOf(searchBox));
+      searchBox.sendKeys(Keys.ENTER);
+        driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+       List<WebElement> al= driver.findElements(By.xpath("//div[text()='₹56,999']/parent::div/parent::div/parent::div/parent::div/div/div[starts-with(text(),'APPLE')]"));
         al.forEach(n-> System.out.println(n.getText()));
 
 
@@ -197,7 +225,7 @@ public class seleniumTests {
        driver.get("https://www.tutorialspoint.com/selenium/selenium_automation_practice.htm");
        driver.manage().window().maximize();;
       // driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
-       driver.findElement(By.xpath("//input[@name=\"photo\"]")).sendKeys("/Users/muralic/Personal/Resume/MuraliC_14yrs.docx");
+       driver.findElement(By.xpath("//input[@name=\"photo\"]")).sendKeys("/Users/muralic/Personal/Resume/MuraliC_Testing.docx");
        //driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
     }
 
